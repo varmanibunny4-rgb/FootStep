@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's sandals</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <style>
+  .selected {
+      background-color: #000;
+      color: #fff;
+    }
+    .size-buttons button.selected {
+      background-color: black;
+      color: white;
+    }
+    </style>
+
+<h1>Women's Footwear</h1>
+<div class="product-card" data-name="Nike SE womens sandals" data-price="3999" data-image="https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/b6332394-8ee9-4d99-8ba5-d60d226d4792/W+NIKE+BURROW+SE.png">
+  <div class="product-image">
+    <img src="https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/b6332394-8ee9-4d99-8ba5-d60d226d4792/W+NIKE+BURROW+SE.png" alt="Nike SE womens slippers">
+  </div>
+  <div class="product-details">
+    <div class="product-name">Nike SE womens sandals</div>
+    <div class="product-price">₹3999</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.0</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-name="Balenciaga black SE sandals" data-price="9999" data-image="https://balenciaga.dam.kering.com/m/d48220af2246664/Medium-654261W2DO11096_F.jpg?v=4">
+  <div class="product-image">
+    <img src="https://balenciaga.dam.kering.com/m/d48220af2246664/Medium-654261W2DO11096_F.jpg?v=4" alt="Black sandals">
+  </div>
+  <div class="product-details">
+    <div class="product-name">Balenciaga black SE sandals</div>
+    <div class="product-price">₹9999</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.1</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-name="LV Black sandals" data-price="4599" data-image="https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-sunset-platform-comfort-sandal--AR6S3AGC02_PM2_Front%20view.jpg">
+  <div class="product-image">
+    <img src="https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-sunset-platform-comfort-sandal--AR6S3AGC02_PM2_Front%20view.jpg" alt="LV black sandals">
+  </div>
+  <div class="product-details">
+    <div class="product-name">LV Black sandals</div>
+    <div class="product-price">₹4599</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.3</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  document.querySelectorAll('.add-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.product-card');
+      const name = card.getAttribute('data-name');
+      const price = parseFloat(card.getAttribute('data-price'));
+      const image = card.getAttribute('data-image');
+      const selectedSize = card.querySelector('.size-btn.selected');
+
+      if (!selectedSize) {
+        alert("Please select a size before adding to cart.");
+        return;
+      }
+
+      const size = selectedSize.textContent;
+      const product = { name, price, image, size, quantity: 1 };
+
+      const existingItem = cart.find(item => item.name === name && item.size === size);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} (Size ${size}) added to cart!`);
+    });
+  });
+
+  document.querySelectorAll('.size-buttons').forEach(group => {
+    const buttons = group.querySelectorAll('.size-btn');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.classList.contains('selected')) {
+          button.classList.remove('selected');
+        } else {
+          buttons.forEach(btn => btn.classList.remove('selected'));
+          button.classList.add('selected');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

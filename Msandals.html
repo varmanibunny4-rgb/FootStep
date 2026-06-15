@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mens Sandals</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    .selected {
+      background-color: #000;
+      color: #fff;
+    }
+    .size-buttons button.selected {
+      background-color: black;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Men's Footwear</h1>
+
+  <!-- Product 1 -->
+  <div class="product-card">
+    <div class="product-image">
+      <img src="https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/2bacfb05-ddc3-4341-9215-5d0f26d6e573/NIKE+CALM+SANDAL.png" alt="Fashion Sandals">
+    </div>
+    <div class="product-details">
+      <div class="product-name">Nike light weight Sandals</div>
+      <div class="product-price">₹3999</div>
+      <div class="product-reviews">
+        <h2>Rating: <i class='bx bxs-star'></i> 4.0</h2>
+        <h3>Size -
+          <div class="size-buttons">
+            <button class="size-btn">7</button>
+            <button class="size-btn">8</button>
+            <button class="size-btn">9</button>
+            <button class="size-btn">10</button>
+          </div>
+        </h3>
+        <button class="add-to-cart"
+          data-name="Nike light weight Sandals"
+          data-category="Men"
+          data-price="3999"
+          data-image="https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/2bacfb05-ddc3-4341-9215-5d0f26d6e573/NIKE+CALM+SANDAL.png">
+          Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product 2 -->
+  <div class="product-card">
+    <div class="product-image">
+      <img src="https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/8745b693-ee38-4d65-8630-aedb60b10d56/W+AIR+MAX+SOL+SANDAL.png" alt="Black sandals">
+    </div>
+    <div class="product-details">
+      <div class="product-name">Nike black Sandals</div>
+      <div class="product-price">₹9999</div>
+      <div class="product-reviews">
+        <h2>Rating: <i class='bx bxs-star'></i> 4.1</h2>
+        <h3>Size -
+          <div class="size-buttons">
+            <button class="size-btn">7</button>
+            <button class="size-btn">8</button>
+            <button class="size-btn">9</button>
+            <button class="size-btn">10</button>
+          </div>
+        </h3>
+        <button class="add-to-cart"
+          data-name="Nike black Sandals"
+          data-category="Men"
+          data-price="9999"
+          data-image="https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/8745b693-ee38-4d65-8630-aedb60b10d56/W+AIR+MAX+SOL+SANDAL.png">
+          Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product 3 -->
+  <div class="product-card">
+    <div class="product-image">
+      <img src="https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/b9bdca68-ba74-4621-a699-02629cabbf5f/NIKE+CANYON+SANDAL.png" alt="Chunky sandals">
+    </div>
+    <div class="product-details">
+      <div class="product-name">Nike chunky Sandals</div>
+      <div class="product-price">₹4599</div>
+      <div class="product-reviews">
+        <h2>Rating: <i class='bx bxs-star'></i> 4.3</h2>
+        <h3>Size -
+          <div class="size-buttons">
+            <button class="size-btn">7</button>
+            <button class="size-btn">8</button>
+            <button class="size-btn">9</button>
+            <button class="size-btn">10</button>
+          </div>
+        </h3>
+        <button class="add-to-cart"
+          data-name="Nike chunky Sandals"
+          data-category="Men"
+          data-price="4599"
+          data-image="https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/b9bdca68-ba74-4621-a699-02629cabbf5f/NIKE+CANYON+SANDAL.png">
+          Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SCRIPT -->
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function addToCart(product) {
+      const existingItem = cart.find(item => item.name === product.name);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${product.name} added to cart!`);
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const product = {
+          name: button.getAttribute('data-name'),
+          category: button.getAttribute('data-category'),
+          price: parseFloat(button.getAttribute('data-price')),
+          image: button.getAttribute('data-image'),
+          quantity: 1
+        };
+        addToCart(product);
+      });
+    });
+
+    // Size selection logic
+    document.querySelectorAll('.size-buttons').forEach(sizeGroup => {
+      const buttons = sizeGroup.querySelectorAll('.size-btn');
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          if (button.classList.contains('selected')) {
+            button.classList.remove('selected');
+          } else {
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

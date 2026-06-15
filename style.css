@@ -1,0 +1,311 @@
+/* Reset and global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+/*the background section of gender selection*/
+/* Set full background image */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://cdn.dribbble.com/userupload/42121869/file/original-f0af2d76d7eb798602d2fe67643201aa.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+}
+
+/* Gender section container */
+.genderS {
+  padding: 60px 20px;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for text readability */
+  min-height: 100vh;
+
+}
+
+/* Headings */
+.genderS h1 {
+  font-size: 2rem;
+  margin: 20px 0;
+  padding-top: 20px;
+}
+
+/* Highlight part of the heading */
+.genderS h1 span {
+  color: #ffcc00;
+}
+
+/* Category boxes (Men/Women) */
+.gender {
+  display: inline-block;
+  margin: 20px;
+}
+
+.gender a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  color: black;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.gender a:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+/*ends here*/
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #000;
+  color: #fff;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+h1, h2, h3, h4 {
+  margin-bottom: 10px;
+}
+
+.genderS{
+  background-image: url('"https://www.modernnotoriety.com/wp-content/uploads/2025/02/nike-basketball-black-label-collection-release-date.jpg');
+
+}
+
+/* Header and navigation */
+header {
+  background-color:white;
+  padding: 15px 30px;
+  border-bottom: 1px solid #333;
+
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+nav img {
+  border-radius: 5px;
+}
+
+nav h2 {
+  margin-left: 15px;
+  font-size: 24px;
+  color: white;
+  flex: 1;
+}
+
+
+.search-bar input {
+  padding: 8px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.search-bar button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #444;
+  color: white;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #666;
+}
+
+.icon-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon-group i {
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+.button-group button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button-group button:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Main section headers */
+h1 span {
+  color: #bbb;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 15px 0;
+}
+
+/* Category boxes */
+.category-box {
+  display: inline-block;
+  margin: 20px;
+  padding: 20px 40px;
+  border: 2px solid white;
+  text-align: center;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.category-box:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Product section */
+.product-card {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 12px;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 900px;
+  display: flex;
+  gap: 20px;
+}
+
+.product-image img {
+  max-width: 220px;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.product-details {
+  flex: 1;
+}
+
+.product-name {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.product-price {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.product-reviews h2 i {
+  color: gold;
+}
+
+.product-reviews h2 {
+  margin-bottom: 10px;
+}
+
+.product-reviews h3 {
+  margin-bottom: 10px;
+}
+
+.product-reviews button {
+  margin: 5px 5px 5px 0;
+  padding: 8px 12px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-reviews button:hover {
+  background-color: #ccc;
+}
+
+/* Categories container */
+.Categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.box {
+  margin: 15px;
+  padding: 15px;
+  background-color:white;
+  border: 1px solid #444;
+  border-radius: 10px;
+  text-align: center;
+  width: 220px;
+  transition: 0.3s ease;
+  color: black;
+  
+}
+
+.box:hover {
+  background-color:rgb(160, 159, 159);
+  color: #000;
+
+}
+
+.box img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.heading {
+  text-align: center;
+  margin: 20px;
+  color: white;
+  text-shadow: black solid;
+}
+/*body styling of different types of products*/
+
+  .catbody{
+    margin: 0;
+    padding: 0;
+    background-image: url('https://s7ap1.scene7.com/is/content/adityabirlafashion/LP_footwear_microsigte_Hb_M?resMode=sharp2&wid=375&hei=280'); /* Replace with any background */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color:black; /* Makes sure text is visible */
+  }
+
+  /* Optional: Add a dark overlay for readability */
+  .catbody::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%; 
+    z-index: -1;
+
+  }
+

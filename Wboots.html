@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Womens bootss</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <style>
+  .selected {
+      background-color: #000;
+      color: #fff;
+    }
+    .size-buttons button.selected {
+      background-color: black;
+      color: white;
+    }
+  </style>
+<h1>Women's Footwear</h1>
+<div class="product-card" data-name="Prada black leather boots" data-price="27999" data-image="https://www.prada.com/content/dam/pradabkg_products/1/1T7/1T782M/3LF7F0002/1T782M_3LF7_F0002_F_B050_SLS.jpg">
+  <div class="product-image">
+    <img src="https://www.prada.com/content/dam/pradabkg_products/1/1T7/1T782M/3LF7F0002/1T782M_3LF7_F0002_F_B050_SLS.jpg" alt="Prada black leather Boots">
+  </div>
+  <div class="product-details">
+    <div class="product-name">Prada black leather boots</div>
+    <div class="product-price">₹27999</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.0</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-name="Burberry high Boots" data-price="24599" data-image="https://assets.burberry.com/is/image/Burberryltd/5C89AE89-6B9D-4C1C-A26C-277772E79AD6?$BBY_V3_SL_1$&wid=1501&hei=1500">
+  <div class="product-image">
+    <img src="https://assets.burberry.com/is/image/Burberryltd/5C89AE89-6B9D-4C1C-A26C-277772E79AD6?$BBY_V3_SL_1$&wid=1501&hei=1500" alt="Burberry high Boots">
+  </div>
+  <div class="product-details">
+    <div class="product-name">Burberry high Boots</div>
+    <div class="product-price">₹24599</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.1</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-name="Gucci leather Boots" data-price="45999" data-image="https://media-assets.grailed.com/prd/listing/temp/261b98c528544ab8b3eec3162870b7b8">
+  <div class="product-image">
+    <img src="https://media-assets.grailed.com/prd/listing/temp/261b98c528544ab8b3eec3162870b7b8" alt="Gucci boots">
+  </div>
+  <div class="product-details">
+    <div class="product-name">Gucci leather Boots</div>
+    <div class="product-price">₹45999</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.3</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  document.querySelectorAll('.add-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.product-card');
+      const name = card.getAttribute('data-name');
+      const price = parseFloat(card.getAttribute('data-price'));
+      const image = card.getAttribute('data-image');
+      const selectedSize = card.querySelector('.size-btn.selected');
+
+      if (!selectedSize) {
+        alert("Please select a size before adding to cart.");
+        return;
+      }
+
+      const size = selectedSize.textContent;
+      const product = { name, price, image, size, quantity: 1 };
+
+      const existingItem = cart.find(item => item.name === name && item.size === size);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} (Size ${size}) added to cart!`);
+    });
+  });
+
+  document.querySelectorAll('.size-buttons').forEach(group => {
+    const buttons = group.querySelectorAll('.size-btn');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.classList.contains('selected')) {
+          button.classList.remove('selected');
+        } else {
+          buttons.forEach(btn => btn.classList.remove('selected'));
+          button.classList.add('selected');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

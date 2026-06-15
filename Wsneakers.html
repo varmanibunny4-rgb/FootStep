@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's sneakers</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <style>
+  .selected {
+      background-color: #000;
+      color: #fff;
+    }
+    .size-buttons button.selected {
+      background-color: black;
+      color: white;
+    }
+    </style>
+<h1>Women's Footwear</h1>
+
+<div class="product-card" data-name="Armani black sneakers" data-price="14999" data-image="https://assets.armani.com/image/upload/f_auto,q_auto:good,w_1125,h_1428,c_fill/v1745382084/X8X027_XK050_D186_D_SS2025.jpg">
+  <div class="product-image">
+    <img src="https://assets.armani.com/image/upload/f_auto,q_auto:good,w_1125,h_1428,c_fill/v1745382084/X8X027_XK050_D186_D_SS2025.jpg" alt="Armani black sneakers">
+  </div>
+  <div class="product-details">
+    <div class="product-name">Armani black sneakers</div>
+    <div class="product-price">₹14,999</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.0</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-name="LV sneakers" data-price="69999" data-image="https://en.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-trainer-sneaker--BS9U1PPC02_PM2_Front%20view.jpg?impolicy=bgcolor&bgcolor=%23f8f8f8">
+  <div class="product-image">
+    <img src="https://en.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-trainer-sneaker--BS9U1PPC02_PM2_Front%20view.jpg?impolicy=bgcolor&bgcolor=%23f8f8f8" alt="LV sneakers">
+  </div>
+  <div class="product-details">
+    <div class="product-name">LV sneakers</div>
+    <div class="product-price">₹69,999</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.1</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-name="Adidas originals sneakers" data-price="11599" data-image="https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/b3eb4e526c3b4f268c53af7b0092b158_9366/campus-00s-shoes.jpg">
+  <div class="product-image">
+    <img src="https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/b3eb4e526c3b4f268c53af7b0092b158_9366/campus-00s-shoes.jpg" alt="Adidas originals">
+  </div>
+  <div class="product-details">
+    <div class="product-name">Adidas originals sneakers</div>
+    <div class="product-price">₹11,599</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.3</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  document.querySelectorAll('.add-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.product-card');
+      const name = card.getAttribute('data-name');
+      const price = parseFloat(card.getAttribute('data-price'));
+      const image = card.getAttribute('data-image');
+      const selectedSize = card.querySelector('.size-btn.selected');
+
+      if (!selectedSize) {
+        alert("Please select a size before adding to cart.");
+        return;
+      }
+
+      const size = selectedSize.textContent;
+      const product = { name, price, image, size, quantity: 1 };
+
+      const existingItem = cart.find(item => item.name === name && item.size === size);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} (Size ${size}) added to cart!`);
+    });
+  });
+
+  document.querySelectorAll('.size-buttons').forEach(group => {
+    const buttons = group.querySelectorAll('.size-btn');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.classList.contains('selected')) {
+          button.classList.remove('selected');
+        } else {
+          buttons.forEach(btn => btn.classList.remove('selected'));
+          button.classList.add('selected');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

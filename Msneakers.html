@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mens sandals</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <style>
+    .selected {
+      background-color: #000;
+      color: #fff;
+    }
+    .size-buttons button.selected {
+      background-color: black;
+      color: white;
+    }
+  </style>
+<h1>Men's Footwear</h1>
+<div class="product-card" data-name="Nike Air force 1" data-price="7999" data-image="https://extrabutterny.in/cdn/shop/files/AURORA_DV0788-001_PHSLH000-2000.jpg?v=1731659244">
+  <div class="product-image">
+    <img src="https://extrabutterny.in/cdn/shop/files/AURORA_DV0788-001_PHSLH000-2000.jpg?v=1731659244" alt="Nike Air force 1">
+  </div>
+  <div class="product-details">
+    <div class="product-name">Nike Air force 1</div>
+    <div class="product-price">₹7999</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.0</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-name="Nike SB panda dunks" data-price="6999" data-image="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/ff2f5b90-6019-4b8b-a642-d48c90c0980b/NIKE+DUNK+LOW+RETRO.png">
+  <div class="product-image">
+    <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/ff2f5b90-6019-4b8b-a642-d48c90c0980b/NIKE+DUNK+LOW+RETRO.png" alt="Nike Sb panda dunks">
+  </div>
+  <div class="product-details">
+    <div class="product-name">Nike SB panda dunks</div>
+    <div class="product-price">₹6999</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.1</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-name="Nike Air max 90's" data-price="4599" data-image="https://www.superkicks.in/cdn/shop/products/am90blackgrey-1-1.jpg?v=1675958397">
+  <div class="product-image">
+    <img src="https://www.superkicks.in/cdn/shop/products/am90blackgrey-1-1.jpg?v=1675958397" alt="Nike Air max 90's">
+  </div>
+  <div class="product-details">
+    <div class="product-name">Nike Air max 90's</div>
+    <div class="product-price">₹4599</div>
+    <div class="product-reviews">
+      <h2>Rating: <i class='bx bxs-star'></i> 4.3</h2>
+      <div class="size-buttons">
+        <button class="size-btn">7</button>
+        <button class="size-btn">8</button>
+        <button class="size-btn">9</button>
+        <button class="size-btn">10</button>
+      </div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  document.querySelectorAll('.add-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.product-card');
+      const name = card.getAttribute('data-name');
+      const price = parseFloat(card.getAttribute('data-price'));
+      const image = card.getAttribute('data-image');
+      const selectedSize = card.querySelector('.size-btn.selected');
+
+      if (!selectedSize) {
+        alert("Please select a size before adding to cart.");
+        return;
+      }
+
+      const size = selectedSize.textContent;
+      const product = { name, price, image, size, quantity: 1 };
+
+      const existingItem = cart.find(item => item.name === name && item.size === size);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} (Size ${size}) added to cart!`);
+    });
+  });
+
+  document.querySelectorAll('.size-buttons').forEach(group => {
+    const buttons = group.querySelectorAll('.size-btn');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.classList.contains('selected')) {
+          button.classList.remove('selected');
+        } else {
+          buttons.forEach(btn => btn.classList.remove('selected'));
+          button.classList.add('selected');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
